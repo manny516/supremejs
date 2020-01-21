@@ -1,5 +1,8 @@
 import _ from 'lodash';
-import renderView from './root';
-//alert("This is a test");
+import './css/main.scss';
+import {RenderView} from './Comp/RenderView';
+import {data} from './Comp/View';
 
-renderView("<p> Hello this is test </p>");
+
+const runView = new RenderView(data);
+runView.renderView();
