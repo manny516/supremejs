@@ -1,0 +1,35 @@
+[ 
+
+    {
+            "name" : "Danny Inman",
+            "userImage" : "https://via.placeholder.com/250",
+            "services" : ["Cuts","Shave","Shampoo","Waxing","Beard Grooming" ],
+            "socialMedia" : ["https://instagram.com","https://facebook.com","https://twitter.com"]  
+    },
+    {
+            "name" : "Tim Burton",
+            "userImage" : "https://via.placeholder.com/250",
+            "services" : ["Cuts", "shampoo", "Shave", "Waxing","Beard Grooming"],
+            "socialMedia" : ["https://instagram.com","https://facebook.com","https://twitter.com"]  
+    },
+    {
+            "name" : "Bill Mar",
+            "userImage" : "https://via.placeholder.com/250",
+            "services": ["Beard Grooming","Cuts","Shampoo","Shave","Waxing"],
+            "socialMedia" : ["https://instagram.com","https://facebook.com","https://twitter.com"] 
+    },
+    {
+            "name" : "Tyson Furry",
+            "userImage" : "https://via.placeholder.com/250",
+            "services" : ["Waxing","Shampoo","Cuts","Beard Grooming"],
+            "socialMedia" : ["https://instagram.com","https://facebook.com","https://twitter.com"] 
+    },
+    {
+            "name" : "Sam Green",
+            "userImage" : "https://via.placeholder.com/250",
+            "services" : ["Cuts","Shampoo","Beard Grooming","Shave"],
+            "socialMedia" : ["https://instagram.com","https://facebook.com","https://twitter.com"] 
+    }
+
+
+]
