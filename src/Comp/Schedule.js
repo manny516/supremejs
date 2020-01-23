@@ -3,7 +3,7 @@ class Schedule{
     constructor(barberName,image, services,socialMedia){
         /** 
          * 
-         * @param barberIdentity  return String   
+         * @param barberName return String   
          * @param image  return URL String 
          * @param services  return Array for services input
          * @param socialMedia return Object
@@ -18,27 +18,27 @@ class Schedule{
 
 
     servicesCheckbox(){
-        this.services.forEach( (item)=>{
-            let serviceCheck = `
-            <input type="checkbox" name="${item}" value="${item}" />${item}
-            `;
-            return serviceCheck;
-        });
+        
+        let inputArray = [];
+        for(let i = 0; i < this.services.length; i++){
+         inputArray[i] = `<input type="checkbox" name="${this.services[i]}" value="${this.services[i]}" /> ${this.services[i]}`; 
+        };
+        return inputArray.join(' ');
     }
 
     socialMediaLinks(){
-        this.socialMedia.map((socialItem) =>{
             let socialLink = `
-                <a href="${socialItem.facebook}" class="fa-facebook">  </a>
-                <a href="${socialItem.instagram}" class="fa-instagram">  </a>
-                <a href="${socialItem.twitter}" class="fa-twitter">  </a>
+                <a href="${this.socialMedia.facebook}" class="fa"> Facebook </a> \n
+                <a href="${this.socialMedia.instagram}" class="fa"> Instagram  </a> \n
+                <a href="${this.socialMedia.twitter}" class="fa"> Twitter   </a>
             `;
             return socialLink;
-        });
     }
 
-    barberIdentity(){
 
+
+    barberIdentity(){
+        
         const barberTitle = `
         <section class="barber-sch">
             <h1>${this.barberName}</h1>
@@ -47,21 +47,26 @@ class Schedule{
                 <img src="${this.image}" alt="Barber Image" />
             </figure>
 
+            <section class="barber-calendar">
+                <input class="date-picker" type="text">
+                
+            </section>
+
             <section class="barber-services"> 
-        
+                ${this.servicesCheckbox()}
             </section>
             
             <section class="barber-social">
                 <nav>
-                  
+                  ${this.socialMediaLinks()}
                 </nav>
             </section>
         </section>
         `;
-
         return barberTitle;
+        
     }
- 
+
 }
 
 export {Schedule};
