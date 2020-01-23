@@ -2,12 +2,12 @@ import './css/main.scss';
 import datepicker from 'js-datepicker'; 
 import {Schedule} from './Comp/Schedule';
  
- let data = fetch('./barberData.json')
+    fetch('./barberData.json')
     .then((response) => response.json())
     .then((data) =>{
         var barberSchedule = {};
         data.forEach((item,index) => { 
-            barberSchedule[index] = new Schedule(item.name,item.userImage,item.services,item.socialMedia);
+            barberSchedule[index] = new Schedule(item);
             barberSchedule[index] =  barberSchedule[index].barberIdentity();
             document.getElementById("target").insertAdjacentHTML('afterbegin',barberSchedule[index]);
             datepicker('.date-picker', {
@@ -23,5 +23,3 @@ import {Schedule} from './Comp/Schedule';
     
     })
     .catch(console.error());
-
-export {data};
