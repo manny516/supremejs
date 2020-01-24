@@ -13,4 +13,4 @@ class RenderView{
 
 }
 
-export  {RenderView};
+export {RenderView};

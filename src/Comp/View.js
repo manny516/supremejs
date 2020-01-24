@@ -1,27 +1,30 @@
+import '../css/main.scss';
+// import datepicker from 'js-datepicker'; 
+import {Schedule} from './Schedule';
+ 
+let data = (function(){ fetch('./barberData.json')
+    .then((response) => response.json())
+    .then((data) =>{
+        var barberSchedule = {};
+        data.forEach((item,index) => { 
+            barberSchedule[index] = new Schedule(item);
+            barberSchedule[index] =  barberSchedule[index].barberIdentity();
+            document.getElementById("target").insertAdjacentHTML('afterbegin',barberSchedule[index]);
+            
+            // datepicker('.date-picker', {
+            //     formatter: (input, date) => {
+            //         const value = date.toLocaleDateString()
+            //         input.value = value // => '1/1/2099'
+            //         console.log(input.value);
+            //     }
+                
+            // });
+        });
 
-import {Schedule} from './Comp/Schedule';
-let data = "<p> Hello this is test </p>";
+        // let grabAllDataPicks = document.querySelectorAll(".date-picker");
+        // console.log(grabAllDataPicks);
+    })
+    .catch(console.error());
+})();
 
-
-const barberSchedule = new Schedule("newItem.name","newItem.userImage");;
-// console.log(barberSchedule.barberIdentity());
-let returnData = fetch('./barberData.json')
-.then((response) => response.json())
-.then((data) =>{
-    let userName ;
-    let userImage;
-    const barberSchedule 
-    data.map((items) =>{
-        const items$= new Schedule(userName,userImage);
-        userName = items.name;
-        userImage = items.userImage;
-        console.log(barberSchedule.barberIdentity());
-    });
-    
-    
-
-});
-
-
-
-export {data};
+export {data}
