@@ -1,65 +1,47 @@
 class Schedule{
 
-    constructor({name,userImage, services,socialMedia}){
+    constructor({service,price, tasks,popular}){
         /** 
          * 
-         * @param name  return String   
-         * @param userImage  return URL String 
+         * @param service  return String   
+         * @param price  return Number 
          * @param services  return Array for services input
-         * @param socialMedia return Object
+         * @param popular return Number
          **/
         
-        this.name = name; 
-        this.userImage = userImage;
-        this.services = services;
-        this.socialMedia = socialMedia;
+        this.service = service; 
+        this.price = price;
+        this.tasks = tasks;
+        this.popular = popular;
 
     }
 
 
-    servicesCheckbox(){
-        // console.log(this.services.length);
+    servicesList(){
         let inputArray = [];
-        for(let i = 0; i < this.services.length; i++){
-         inputArray[i] = `<input type="checkbox" name="${this.services[i]}" value="${this.services[i]}" /> ${this.services[i]}`; 
+        for(let i = 0; i < this.tasks.length; i++){
+         inputArray[i] = `<li class="barber-task"> ${this.tasks[i]} </li>`; 
         };
         return inputArray.join(' ');
-    }
-
-    socialMediaLinks(){
-            let socialLink = `
-                <a href="${this.socialMedia.facebook}" class="fa"> Facebook </a> \n
-                <a href="${this.socialMedia.instagram}" class="fa"> Instagram  </a> \n
-                <a href="${this.socialMedia.twitter}" class="fa"> Twitter   </a>
-            `;
-            return socialLink;
     }
 
 
 
     barberIdentity(){
+        
         const barberTitle = `
         <section class="barber-sch">
-            <h1>${this.name}</h1>
+            <h1>${this.service}</h1>
 
-            <figure>
-                <img src="${this.userImage}" alt="Barber Image" />
-            </figure>
-
-            <section class="barber-calendar">
-                <input class="date-picker" type="text">
-                
-            </section>
+            <span> $${this.price} </span>
 
             <section class="barber-services"> 
-                ${this.servicesCheckbox()}
+                <ul>
+                    ${this.servicesList()}
+                </ul>
             </section>
             
-            <section class="barber-social">
-                <nav>
-                  ${this.socialMediaLinks()}
-                </nav>
-            </section>
+            <button> Book Now </button>
         </section>
         `;
         return barberTitle;
