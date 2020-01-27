@@ -1,60 +1,82 @@
-[ 
-
-    {
-        "service" : "Men's Cut",
-        "price" : 30,
-        "tasks" : ["Any Fade","Optional Shampoo","Razor Line","Mustache included" ],
-        "popular" : 0 
-    },
-    {
-        "service" : "Men's Cut & Beard trim",
-        "price" : 35,
-        "tasks" : ["Any Fade","Razor Shave", "Razor Line", "Hot Towel","Optional Shampoo"],
-        "popular" : 0 
-    },
-    {
-        "service" : "Teen Cut",
-        "price" : 25,
-        "tasks": ["Ceaser or Fade","Optional Shampoo"],
-        "popular" : 0
-    },
-    {
-        "service" : "Women's Cut",
-        "price" : 25,
-        "tasks" : ["Custom Cuts","shampoo"],
-        "popular" : 0
-    },
-    {
-        "service" : "Kid Cut",
-        "price" : 20,
-        "tasks" : ["Any Cut","Optional Shampoo"],
-        "popular" : 0
-    },
-    {
-        "service" : "Men's Cut w/ Beard Enhancment ",
-        "price" : 50,
-        "tasks" : [],
-        "popular" : 1
-    },
-    {
-        "service" : "Men's Cut & Beard Enhancment ",
-        "price" : 45,
-        "tasks" : [],
-        "popular" : 1
-    },
-    {
-        "service" : "Mens Line Up ",
-        "price" : 15,
-        "tasks" : ["Shear dead ends","clean up Hairline","includes razor"],
-        "popular" : 1
-    },
-    {
-        "service" : "Mens Beard Line Up ",
-        "price" : 20,
-        "tasks" : [],
-        "popular" : 1
-    }
-
-
-
-]
+{
+    "appointments": [
+        {
+            "service": "Men's Cut",
+            "price": 30,
+            "tasks": [
+                "Any Fade",
+                "Optional Shampoo",
+                "Razor Line",
+                "Mustache included"
+            ],
+            "popular": 0
+        },
+        {
+            "service": "Men's Cut & Beard trim",
+            "price": 35,
+            "tasks": [
+                "Any Fade",
+                "Razor Shave",
+                "Razor Line",
+                "Hot Towel",
+                "Optional Shampoo"
+            ],
+            "popular": 0
+        },
+        {
+            "service": "Teen Cut",
+            "price": 25,
+            "tasks": [
+                "Ceaser or Fade",
+                "Optional Shampoo"
+            ],
+            "popular": 0
+        },
+        {
+            "service": "Women's Cut",
+            "price": 25,
+            "tasks": [
+                "Custom Cuts",
+                "shampoo"
+            ],
+            "popular": 0
+        },
+        {
+            "service": "Kid Cut",
+            "price": 20,
+            "tasks": [
+                "Any Cut",
+                "Optional Shampoo"
+            ],
+            "popular": 0
+        },
+        {
+            "service": "Men's Cut w/ Beard Enhancment ",
+            "price": 50,
+            "tasks": [],
+            "popular": 1
+        },
+        {
+            "service": "Men's Cut & Beard Enhancment ",
+            "price": 45,
+            "tasks": [],
+            "popular": 1
+        },
+        {
+            "service": "Mens Line Up ",
+            "price": 15,
+            "tasks": [
+                "Shear dead ends",
+                "clean up Hairline",
+                "includes razor"
+            ],
+            "popular": 1
+        },
+        {
+            "service": "Mens Beard Line Up ",
+            "price": 20,
+            "tasks": [],
+            "popular": 1
+        }
+    ]
+}

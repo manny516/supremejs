@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './css/main.scss';
 import {RenderView} from './Comp/RenderView';
-import {data} from './Comp/View';
+import {View} from './Comp/View';
 
-const runView = new RenderView(data);
+const runView = new RenderView(View);
 runView.renderView();

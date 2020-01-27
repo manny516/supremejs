@@ -1,14 +1,14 @@
 
 class RenderView{
 
-    constructor(content){
+    constructor([...content]){
         this.root = document.getElementById("root");
-        this.view = content;
+        this.view = content.join(" ");
     }
 
     renderView(){
         console.log(this.root);
-        this.root.insertAdjacentHTML('afterend', this.view);
+        this.root.insertAdjacentHTML('beforebegin', this.view);
     }
 
 }

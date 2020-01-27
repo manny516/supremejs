@@ -1,4 +1,4 @@
-class Schedule{
+class Services{
 
     constructor({service,price, tasks,popular}){
         /** 
@@ -33,7 +33,7 @@ class Schedule{
         <section class="barber-sch">
             <h1>${this.service}</h1>
 
-            <span> $${this.price} </span>
+            <div> $${this.price} </div>
 
             <section class="barber-services"> 
                 <ul>
@@ -50,4 +50,4 @@ class Schedule{
 
 }
 
-export {Schedule};
+export {Services};

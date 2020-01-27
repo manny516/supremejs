@@ -4,3 +4,31 @@
 body{
     color : #000;
 }
+
+
+#target{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .barber-sch{
+        
+        min-height:150px;
+        .barber-services{
+            display: inline-block;
+        }
+        button{
+            float: right;
+            width: 100px;
+            height:50px;
+            background: #000;
+            color: #FFF;
+
+        }
+
+        border-bottom: 1px solid #000;
+        margin-bottom:10px;
+    }
+
+
+}
