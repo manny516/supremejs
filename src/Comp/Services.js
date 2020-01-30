@@ -12,13 +12,13 @@ class Services{
         this.service = service; 
         this.price = price;
         this.tasks = tasks;
-        this.popular = popular;
+        this.popular = popular; 
 
     }
 
-
     servicesList(){
-        let inputArray = [];
+        
+        const inputArray = [];
         for(let i = 0; i < this.tasks.length; i++){
          inputArray[i] = `<li class="barber-task"> ${this.tasks[i]} </li>`; 
         };
@@ -28,7 +28,7 @@ class Services{
 
 
     barberIdentity(){
-        
+       
         const barberTitle = `
         <section class="barber-sch">
             <h1>${this.service}</h1>

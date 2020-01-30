@@ -1,7 +1,8 @@
 import '../css/main.scss';
-// import datepicker from 'js-datepicker'; 
-import {booking} from './Booking';
+import {Booking} from './Booking';
+import{Schedule} from './Schedule';
+const Header = new Schedule("hello").barberSelector();
  
-let View = [ "<p>hello World</p>",booking];
+let View = [Header,Booking];
 
 export {View}

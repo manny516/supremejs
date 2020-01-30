@@ -1,3 +1,7 @@
+import {CalendarFunc} from './Calendar';
+import {Schedule} from './Schedule';
+
+const scheduleOpt = new Schedule();
 
 class RenderView{
 
@@ -9,6 +13,9 @@ class RenderView{
     renderView(){
         console.log(this.root);
         this.root.insertAdjacentHTML('beforebegin', this.view);
+        CalendarFunc();
+        scheduleOpt.baberOptions();
+
     }
 
 }
