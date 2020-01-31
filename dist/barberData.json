@@ -9,7 +9,8 @@
                 "Razor Line",
                 "Mustache included"
             ],
-            "popular": 0
+            "popular": 0,
+            "id" : 1
         },
         {
             "service": "Men's Cut & Beard trim",
@@ -21,7 +22,8 @@
                 "Hot Towel",
                 "Optional Shampoo"
             ],
-            "popular": 0
+            "popular": 0,
+            "id" : 2
         },
         {
             "service": "Teen Cut",
@@ -30,7 +32,8 @@
                 "Ceaser or Fade",
                 "Optional Shampoo"
             ],
-            "popular": 0
+            "popular": 0,
+            "id" : 3
         },
         {
             "service": "Women's Cut",
@@ -39,7 +42,8 @@
                 "Custom Cuts",
                 "shampoo"
             ],
-            "popular": 0
+            "popular": 0,
+            "id" : 4
         },
         {
             "service": "Kid Cut",
@@ -48,19 +52,22 @@
                 "Any Cut",
                 "Optional Shampoo"
             ],
-            "popular": 0
+            "popular": 0,
+            "id" : 5
         },
         {
             "service": "Men's Cut w/ Beard Enhancment ",
             "price": 50,
             "tasks": [],
-            "popular": 1
+            "popular": 1,
+            "id" : 6
         },
         {
             "service": "Men's Cut & Beard Enhancment ",
             "price": 45,
             "tasks": [],
-            "popular": 1
+            "popular": 1,
+            "id" : 7
         },
         {
             "service": "Mens Line Up ",
@@ -70,13 +77,15 @@
                 "clean up Hairline",
                 "includes razor"
             ],
-            "popular": 1
+            "popular": 1,
+            "id" : 8
         },
         {
             "service": "Mens Beard Line Up ",
             "price": 20,
             "tasks": [],
-            "popular": 1
+            "popular": 1,
+            "id" : 9
         }
     ]
 }

@@ -17,10 +17,9 @@ function viewAction(){
 
     }
 
-
     function CalendarFunc() { 
         
-            datepicker('.date-picker', {
+        datepicker('.date-picker', {
             formatter: (input, date) => {
                 const value = date.toLocaleDateString()
                 input.value = value // => '1/1/2099'
@@ -32,7 +31,8 @@ function viewAction(){
 
 
     }
-    
+
+
     return publicAPI; 
 
 }
