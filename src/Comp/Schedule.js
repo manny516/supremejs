@@ -2,15 +2,9 @@ class Schedule{
 
     constructor(barbers){
         this.barbers = barbers;
+    
     }
 
-    baberOptions(){
-        const optionsTag = document.querySelector('.barber-options');
-        optionsTag.addEventListener("change", function(){
-            console.log(this.options[this.selectedIndex].value);
-        });
-        
-    }
 
     barberList(){
 

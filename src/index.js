@@ -5,3 +5,4 @@ import {View,ViewObj} from './Comp/View';
 
 const runView = new RenderView(View);
 runView.renderView();
+runView.renderActions();
