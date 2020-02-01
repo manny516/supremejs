@@ -1,8 +1,10 @@
 import '../css/main.scss';
-import {Booking,submitForm} from './Booking';
+import {Booking,form} from './Booking';
 import{Schedule} from './Schedule';
 const Header = new Schedule("hello").barberSelector();
  
-let View = [Header,submitForm,Booking];
+let View = [Header,form,Booking];
+
+
 
 export {View}

@@ -1,4 +1,6 @@
 import {Services} from './Services';
+import{viewAction} from './Appointment';
+
 
  const Booking = (
      function(){ fetch('./barberData.json')
@@ -9,42 +11,42 @@ import {Services} from './Services';
             barberSchedule[index] = new Services(item);
             barberSchedule[index] =  barberSchedule[index].barberIdentity();
             document.getElementById("target").insertAdjacentHTML('afterbegin',barberSchedule[index]);
+            const bookBtn = document.querySelector(".book-btn");
+            bookBtn.addEventListener("click",function(e){
+                console.log(e.currentTarget);
+            })
+            
         });
 
     })
+    .then()
     .catch(console.error());
 })();
 
- const submitForm = (function(){
-
-    const form =  `
+const form =  `
         <article class="booking-form"> 
-
-            <section class="client-name"> 
+            <button class="exit-form"> X </button>
+            <h2> Please fillout the information </h2>
+            <section class="input-field"> 
                 <label> Name</label>
-                <input type="text" name="client-name"/>
+                <input type="text" class="client-name" name="client-name"/>
             </section>
 
-            <section class="email">
+            <section class="input-field">
                 <label> Email </label>
-                <input type="text" name="email" />
+                <input type="text" name="email" class="email" />
             </section>
 
-            <section class="phone">
+            <section class="input-field">
                 <label> Phone </label>
-                <input type="text" name="phone" />
+                <input type="text" name="phone" class="phone" />
             </section>
 
             <button class="submit-btn"> Submit </button>
         
         </article>
 
-    `
-    return form ;
-
- })();
+    `;
 
 
-
-
-export{Booking,submitForm};
+export{Booking,form};

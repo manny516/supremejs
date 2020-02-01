@@ -1,6 +1,6 @@
 class Services{
 
-    constructor({service,price, tasks,popular}){
+    constructor({service,price, tasks,popular,id}){
         /** 
          * 
          * @param service  return String   
@@ -13,11 +13,12 @@ class Services{
         this.price = price;
         this.tasks = tasks;
         this.popular = popular; 
+        this.id = id;
 
     }
 
     servicesList(){
-        
+
         const inputArray = [];
         for(let i = 0; i < this.tasks.length; i++){
          inputArray[i] = `<li class="barber-task"> ${this.tasks[i]} </li>`; 
@@ -30,7 +31,7 @@ class Services{
     barberIdentity(){
        
         const barberTitle = `
-        <section class="barber-sch">
+        <section class="barber-sch" data-id="${this.id}">
             <h1>${this.service}</h1>
 
             <div> $${this.price} </div>
@@ -41,7 +42,7 @@ class Services{
                 </ul>
             </section>
             
-            <button> Book Now </button>
+            <button class="book-btn"> Book Now </button>
         </section>
         `;
         return barberTitle;

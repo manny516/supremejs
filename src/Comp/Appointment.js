@@ -3,9 +3,10 @@ import datepicker from 'js-datepicker';
 const Appointment = new Object;
 
 
-function viewAction(){
 
-    const publicAPI = {CalendarFunc,appointmentQue}
+ const viewAction =( ) =>  {
+
+    const publicAPI = {CalendarFunc,appointmentQue,bookBtnAction}
     
     function appointmentQue () {
         const optionsTag = document.querySelector('.barber-options');
@@ -28,6 +29,16 @@ function viewAction(){
             }
             
         });
+
+    }
+
+
+    function bookBtnAction(){
+        const bookBtn = document.querySelector(".book-btn");
+        console.log(bookBtn);
+        // bookBtn.addEventListener("click",function(){
+            
+        // });
 
 
     }
