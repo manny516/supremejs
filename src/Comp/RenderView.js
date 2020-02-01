@@ -15,6 +15,7 @@ class RenderView{
     renderActions(){
         viewAction().CalendarFunc();
         viewAction().appointmentQue();
+        viewAction().bookForm();
     }
 
 }

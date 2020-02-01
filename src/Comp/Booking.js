@@ -14,7 +14,6 @@ import{Appointment} from './Appointment';
             
             const bookBtn = document.querySelector(".book-btn");
             const bookForm = document.querySelector('#booking-form');
-            const exitForm = document.querySelector('.exit-form');
             const spaBody = document.querySelector("body");
             
             bookBtn.addEventListener("click",function(e){
@@ -23,12 +22,6 @@ import{Appointment} from './Appointment';
                 bookForm.classList.toggle("show-form");
                 spaBody.classList.toggle("freeze");
             });
-
-            exitForm.addEventListener("click", function(){
-                bookForm.classList.toggle("show-form");
-                spaBody.classList.toggle("freeze");
-            });
-
             
         });
 
