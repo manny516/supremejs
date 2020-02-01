@@ -1,5 +1,5 @@
 import {Services} from './Services';
-import{viewAction} from './Appointment';
+import{Appointment} from './Appointment';
 
 
  const Booking = (
@@ -11,10 +11,24 @@ import{viewAction} from './Appointment';
             barberSchedule[index] = new Services(item);
             barberSchedule[index] =  barberSchedule[index].barberIdentity();
             document.getElementById("target").insertAdjacentHTML('afterbegin',barberSchedule[index]);
+            
             const bookBtn = document.querySelector(".book-btn");
+            const bookForm = document.querySelector('#booking-form');
+            const exitForm = document.querySelector('.exit-form');
+            const spaBody = document.querySelector("body");
+            
             bookBtn.addEventListener("click",function(e){
-                console.log(e.currentTarget);
-            })
+                const btnParent = e.currentTarget.parentElement;
+                Appointment.serviceId = btnParent.getAttribute("data-id");
+                bookForm.classList.toggle("show-form");
+                spaBody.classList.toggle("freeze");
+            });
+
+            exitForm.addEventListener("click", function(){
+                bookForm.classList.toggle("show-form");
+                spaBody.classList.toggle("freeze");
+            });
+
             
         });
 
@@ -24,7 +38,7 @@ import{viewAction} from './Appointment';
 })();
 
 const form =  `
-        <article class="booking-form"> 
+        <article id="booking-form"> 
             <button class="exit-form"> X </button>
             <h2> Please fillout the information </h2>
             <section class="input-field"> 

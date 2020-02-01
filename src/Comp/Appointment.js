@@ -6,7 +6,7 @@ const Appointment = new Object;
 
  const viewAction =( ) =>  {
 
-    const publicAPI = {CalendarFunc,appointmentQue,bookBtnAction}
+    const publicAPI = {CalendarFunc,appointmentQue}
     
     function appointmentQue () {
         const optionsTag = document.querySelector('.barber-options');
@@ -33,20 +33,9 @@ const Appointment = new Object;
     }
 
 
-    function bookBtnAction(){
-        const bookBtn = document.querySelector(".book-btn");
-        console.log(bookBtn);
-        // bookBtn.addEventListener("click",function(){
-            
-        // });
-
-
-    }
-
-
     return publicAPI; 
 
 }
 
 
-export {viewAction}
+export {viewAction,Appointment}

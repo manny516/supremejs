@@ -10,10 +10,10 @@ body{
 }
 
 
+.show-form{display: block !important;}
+.freeze{overflow: hidden !important;}
 
-
-.booking-form{
-
+#booking-form{
     display: none;
     .exit-form{
         float: right;
