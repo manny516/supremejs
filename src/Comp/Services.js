@@ -3,10 +3,11 @@ class Services{
     constructor({service,price, tasks,popular,id}){
         /** 
          * 
-         * @param service  return String   
+         * @param service  return Array   
          * @param price  return Number 
-         * @param services  return Array for services input
+         * @param task  returns Array
          * @param popular return Number
+         * @param id returns Number
          **/
         
         this.service = service; 

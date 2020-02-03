@@ -19,6 +19,30 @@ class Schedule{
         return listOptions;
     }
 
+
+    barberTime(){
+        const hours = `
+            <select class="barber-time"> 
+            
+                <option value="8"> 8AM </option>
+                <option value="9"> 8AM </option>
+                <option value="10"> 10AM </option>
+                <option value="11"> 11AM </option>
+                <option value="12"> 12PM </option>
+                <option value="13"> 1PM </option>
+                <option value="14"> 2PM </option>
+                <option value="15"> 3PM </option>
+                <option value="16"> 4PM </option>
+                <option value="17"> 5PM </option>
+                <option value="18"> 8PM </option>
+            
+            </select>
+        
+        `;
+
+        return hours;
+    }
+
     barberSelector(){
 
         const selectorHtml = `              
@@ -28,14 +52,16 @@ class Schedule{
                 <hr>
 
                 <section>
-                    
                     ${this.barberList()}
-                   
                 </section>
 
                 <section>
                     <input class="date-picker" type="text" placeholder="MM/DD/YYYY" />
-                </sectio>
+                </section>
+                
+                <section>
+                    ${this.barberTime()}
+                </section>
             
             </header>
         `;
