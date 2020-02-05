@@ -1,7 +1,6 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
 
@@ -11,6 +10,7 @@ const app = express();
 //S
 // app.use('/dist',express.static(path.join(__dirname,'dist')));
 app.use(express.static('dist'));
+
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
