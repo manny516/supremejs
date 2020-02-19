@@ -45,8 +45,8 @@ import{Appointment} from './Appointment';
 
 const form =  `
         <article id="booking-form"> 
-            <form method="POST" action="/send">
             <button class="exit-form"> X </button>
+            <form method="POST" action="/send">
             <h2> Please fillout the information </h2>
             <input class="barberField" type="hidden" name="barber" value="${Appointment.barberName}" />
             <input class="serviceField" type="hidden" name="service" value="${Appointment.service}" />

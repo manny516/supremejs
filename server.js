@@ -1,24 +1,39 @@
-
-const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
-const nodemailer = require('nodemailer');
-
-
+const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+app.set('view engine', 'pug');
 
-//S
-// app.use('/dist',express.static(path.join(__dirname,'dist')));
+
+//Static DIR for the server side template
+app.use(express.static(path.join(__dirname + '/views/js')));
+
+//Static DIR for the main index site;
 app.use(express.static('dist'));
 
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
+
+// Loading Index page of the Application 
 app.get('/',(req,res) =>{
-    res.sendFile(path.join(__dirname+'/dist/index.html'));
+    res.sendFile(path.join('index.html'));
 })
 
+
+//Update Barber data for page 
+
+
+app.get('/update-supreme', function(req,res){
+    res.render('test');
+    res.sendStatus(200);
+});
+
+
+
+//Post request to Send HTML email on form Submit
 app.post('/send',function(req,res){
     console.log(req.body);
     const output = `
@@ -41,7 +56,7 @@ app.post('/send',function(req,res){
     `;
 
 
-    // create reusable transporter object using the default SMTP transport
+// create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
     host: "mail.mannyidea.com",
     port: 587,
@@ -71,18 +86,9 @@ let transporter = nodemailer.createTransport({
       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   });
 
+  res.redirect('http://mannyidea.com');
+
 })
-
-
-  
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
- 
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-
-
-
 
 app.listen(4000, () => console.log('server-started'));
 
