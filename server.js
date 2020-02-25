@@ -3,6 +3,21 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+
+let pathName = "/views/css";
+
+const createDir = (dirPath) => {
+    fs.mkdirSync(process.cwd() + dirPath, {recursive : true}, (error) => {
+        if(error){
+            console.error("An error occurred : ", error);
+        }else{
+            console.log("Your Directory was made !");
+        }
+    });
+}
+
+
 app.set('view engine', 'pug');
 
 
@@ -29,6 +44,24 @@ app.get('/',(req,res) =>{
 app.get('/update-supreme', function(req,res){
     res.render('test');
     res.sendStatus(200);
+});
+
+app.get("/createdir", function(req,res){
+ 
+    fs.access(`.${pathName}`, function(error) {
+    if (error) {
+        console.log("Directory does not exist.");
+        createDir(pathName);
+        console.log("Directory was just created");
+        res.redirect('/');
+
+
+    } else {
+        console.log("Directory exists.")
+        
+    }
+    })
+    
 });
 
 
