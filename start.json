@@ -1,0 +1,25 @@
+{
+    "service": "Men's Cut",
+    "price": 27,
+    "tasks": [
+        "Any Fade",
+        "Optional Shampoo",
+        "Razor Line",
+        "Mustache included"
+    ],
+    "popular": 0,
+    "id" : 1
+},
+{
+    "service": "Men's Cut & Beard trim",
+    "price": 35,
+    "tasks": [
+        "Any Fade",
+        "Razor Shave",
+        "Razor Line",
+        "Hot Towel",
+        "Optional Shampoo"
+    ],
+    "popular": 0,
+    "id" : 2
+},

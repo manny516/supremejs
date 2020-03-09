@@ -5,17 +5,54 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 
-let pathName = "/views/css";
 
-const createDir = (dirPath) => {
-    fs.mkdirSync(process.cwd() + dirPath, {recursive : true}, (error) => {
-        if(error){
-            console.error("An error occurred : ", error);
-        }else{
-            console.log("Your Directory was made !");
+let testContent = `{
+    "service": "Men's Cut",
+    "price": 27,
+    "tasks": [
+        "Any Fade",
+        "Optional Shampoo",
+        "Razor Line",
+        "Mustache included"
+    ],
+    "popular": 0,
+    "id" : 1
+},
+{
+    "service": "Men's Cut & Beard trim",
+    "price": 35,
+    "tasks": [
+        "Any Fade",
+        "Razor Shave",
+        "Razor Line",
+        "Hot Towel",
+        "Optional Shampoo"
+    ],
+    "popular": 0,
+    "id" : 2
+},`;
+
+let createFile = (content) => {
+
+    fs.writeFile('start.json',content, (err) =>{
+        if(err){
+            throw err;
         }
-    });
+        console.log('file is created');
+    })
 }
+let pathName = "/views";
+
+// const createDir = (dirPath) => {
+//     fs.mkdirSync(process.cwd() + dirPath, {recursive : true}, (error) => {
+//         if(error){
+//             console.error("An error occurred : ", error);
+//         }else{
+//             console.log("Your Directory was made !");
+//         }
+//     });
+
+// }
 
 
 app.set('view engine', 'pug');
@@ -42,10 +79,21 @@ app.get('/',(req,res) =>{
 
 
 app.get('/update-supreme', function(req,res){
-    res.render('test');
+    res.render('update');
     res.sendStatus(200);
 });
 
+app.get('/createfile',function(req,res){
+    fs.access(`.${pathName}`,function(err){
+
+        if(err){
+            throw err
+        }else{
+            createFile(testContent);
+            console.log("File created ");
+        }
+    })
+});
 app.get("/createdir", function(req,res){
  
     fs.access(`.${pathName}`, function(error) {
