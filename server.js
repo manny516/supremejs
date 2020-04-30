@@ -1,47 +1,68 @@
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
 
 
-let testContent = `{
-    "service": "Men's Cut",
-    "price": 27,
-    "tasks": [
-        "Any Fade",
-        "Optional Shampoo",
-        "Razor Line",
-        "Mustache included"
-    ],
-    "popular": 0,
-    "id" : 1
-},
-{
-    "service": "Men's Cut & Beard trim",
-    "price": 35,
-    "tasks": [
-        "Any Fade",
-        "Razor Shave",
-        "Razor Line",
-        "Hot Towel",
-        "Optional Shampoo"
-    ],
-    "popular": 0,
-    "id" : 2
-},`;
 
-let createFile = (content) => {
+app.set('view engine', 'pug');
 
-    fs.writeFile('start.json',content, (err) =>{
+let testContent = `
+    {
+        "barberInfo" : [
+
+            {
+                "name": "Danny Inman",
+                "hours": ["8am","10am","1pm","4pm"],
+                "phone": "6462305467"
+            },
+            {
+                "name": "Jordan Pelli",
+                "hours": ["7am","9am","12pm","2pm"],
+                "phone": "7182309877"
+            },
+            {
+                "name": "toby lense",
+                "hours": ["3am","10am","1pm","2pm"],
+                "phone": "71823435277"
+            }
+        ],
+
+        "barberInfo" : [
+
+            {
+                "name": "Danny Inman",
+                "hours": ["8am","10am","1pm","4pm"],
+                "phone": "6462305467"
+            },
+            {
+                "name": "Jordan Pelli",
+                "hours": ["7am","9am","12pm","2pm"],
+                "phone": "7182309877"
+            },
+            {
+                "name": "toby lense",
+                "hours": ["3am","10am","1pm","2pm"],
+                "phone": "71823435277"
+            }
+        ]
+    }
+
+`;
+
+let createFile = (content,path='') => {
+
+    fs.writeFileSync(`${path}rou.json`,content, (err) =>{
         if(err){
             throw err;
         }
         console.log('file is created');
-    })
+    });
+    
 }
-let pathName = "/views";
+let pathName = "/dist";
 
 // const createDir = (dirPath) => {
 //     fs.mkdirSync(process.cwd() + dirPath, {recursive : true}, (error) => {
@@ -55,11 +76,10 @@ let pathName = "/views";
 // }
 
 
-app.set('view engine', 'pug');
-
-
 //Static DIR for the server side template
 app.use(express.static(path.join(__dirname + '/views/js')));
+//Static DIR for the server side template
+app.use(express.static(path.join(__dirname + '/views/css')));
 
 //Static DIR for the main index site;
 app.use(express.static('dist'));
@@ -72,28 +92,42 @@ app.use(bodyParser.json());
 // Loading Index page of the Application 
 app.get('/',(req,res) =>{
     res.sendFile(path.join('index.html'));
+});
+
+app.get('/dashboard', function(req,res){
+    res.render('dashboard');
+    
+});
+
+
+app.get('/update-success',(req,res)=>{
+   res.render('update-success');
 })
 
+app.post('/send-update', (req,res) =>{
+
+    createFile(testContent,`./${pathName}/`);
+    console.log("File created ");  
+    // res.redirect('/update-supreme');
+    console.log("hello world");
+    res.location("/update-supreme"); 
+    
+
+});
 
 //Update Barber data for page 
 
 
-app.get('/update-supreme', function(req,res){
-    res.render('update');
-    res.sendStatus(200);
-});
 
-app.get('/createfile',function(req,res){
-    fs.access(`.${pathName}`,function(err){
 
-        if(err){
-            throw err
-        }else{
-            createFile(testContent);
-            console.log("File created ");
-        }
-    })
-});
+
+
+// app.get('/createfile',function(req,res){
+    
+    
+// });
+
+
 app.get("/createdir", function(req,res){
  
     fs.access(`.${pathName}`, function(error) {

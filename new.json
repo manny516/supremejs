@@ -1,0 +1,17 @@
+
+    {
+        "barberInfo" : [
+
+            {
+                "name": "Danny Inman",
+                "hours": ["8am","10am","1pm","4pm"],
+                "phone": "5162309876"
+            },
+            {
+                "name": "Marsc",
+                "hours": ["7am","9am","12pm","2pm"],
+                "phone": "7182309877"
+            }
+        ]
+    }
+

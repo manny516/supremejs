@@ -1,0 +1,27 @@
+
+    {
+        "barberInfo" : [
+
+            {
+                "name": "Danny Inman",
+                "hours": ["8am","10am","1pm","4pm"],
+                "phone": "6462305467"
+            },
+            {
+                "name": "Jordan Pelli",
+                "hours": ["7am","9am","12pm","2pm"],
+                "phone": "7182309877"
+            },
+            {
+                "name": "toby lense",
+                "hours": ["3am","10am","1pm","2pm"],
+                "phone": "71823435277"
+            },
+            {
+                "name": "Manny Red",
+                "hours": ["1am","9am","4pm","7pm"],
+                "phone": "71823435277"
+            }
+        ]
+    }
+

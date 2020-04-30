@@ -1,4 +1,4 @@
-class Schedule{
+class Header{
 
     constructor(barbers){
         this.barbers = barbers;
@@ -74,4 +74,4 @@ class Schedule{
 }
 
 
-export{Schedule}
+export{Header}
