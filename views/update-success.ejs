@@ -6,13 +6,26 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
         <link rel="stylesheet"  href="/server.css" />
+
     </head>
 
     <body>
 
-        main(class="container")
-            article
-                h1 Update was successfull
+        <main class="container">
+            <article>
+                <h1> Update was successfull</h1>
+                <ul>
+                   <li> <%= data.barberName %> </li>
+                   <li> <%= data.barberPhone %> </li>
+                    <li> <%= data.barberTime %> </li>
+
+
+                </ul>
+                
+
+            </article>
+                
+        </main>
     </body>
     <script src="/update-success.js"> </script>
 </html>

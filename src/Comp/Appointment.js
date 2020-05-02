@@ -16,8 +16,6 @@ const Appointment = new Object;
             hiddenBarber.setAttribute('value',Appointment.barberName);
             console.log(Appointment);
         });
-
-
     }
 
     function timeQue(){
@@ -28,7 +26,6 @@ const Appointment = new Object;
             hiddenTime.setAttribute('value',Appointment.time);
             // console.log(Appointment);
         });
-
     }
 
     function CalendarFunc() { 
@@ -75,8 +72,6 @@ const Appointment = new Object;
             function totals(total,num){
                 return total+num;
             }
-
-
 
             console.log(clientName.value);
 

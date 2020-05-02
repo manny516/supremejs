@@ -1,8 +1,11 @@
 
-setTimeout(()=>{
-    console.log("Text now");
-    window.location.href = "/dashboard";
-},3000);
+
+
+
+// setTimeout(()=>{
+//     console.log("Text now");
+//     window.location.href = "/dashboard";
+// },3000);
 
 // const fs = require('fs');
 

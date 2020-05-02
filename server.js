@@ -1,13 +1,21 @@
+console.log(__filename);
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const app = express();
+
+let jsonParser = bodyParser.json();
+
 const nodemailer = require('nodemailer');
 
+app.set('view engine', 'ejs');
 
+//Body Parser Middleware
+app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.json());
 
-app.set('view engine', 'pug');
+let urlencodedParser = bodyParser.urlencoded({extended : false});
 
 let testContent = `
     {
@@ -84,9 +92,8 @@ app.use(express.static(path.join(__dirname + '/views/css')));
 //Static DIR for the main index site;
 app.use(express.static('dist'));
 
-//Body Parser Middleware
-app.use(bodyParser.urlencoded({extended : false}));
-app.use(bodyParser.json());
+
+
 
 
 // Loading Index page of the Application 
@@ -99,11 +106,26 @@ app.get('/dashboard', function(req,res){
     
 });
 
+app.get('/update/:name',(req,res)=>{
+    res.render('update-success',{person: req.params.name});
+});
 
-app.get('/update-success',(req,res)=>{
-   res.render('update-success');
-})
+app.post('/update-data',urlencodedParser,(req,res) =>{
+    let data = req.body;
+    console.log(data.barberName);
+    res.render('update-success',{data : req.body});
+    
+});
 
+
+
+// app.get('/update-success',(req,res)=>{
+//     res.render('update-success');
+//  });
+
+// app.get('/update-data',(req,res)=>{
+//     res.render('update-success',{theData:req.body});
+// });
 app.post('/send-update', (req,res) =>{
 
     createFile(testContent,`./${pathName}/`);

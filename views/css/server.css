@@ -3,3 +3,13 @@ th,td{
     border:1px solid;
     padding: 20px;
 }
+
+
+.myForm{
+    width:300px;   
+}
+
+.myForm label{
+    width: 100%;
+    display: inline-block;
+}
