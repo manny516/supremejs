@@ -58,8 +58,11 @@ app.get('/update/:name',(req,res)=>{
 
 app.post('/update-data',urlencodedParser,(req,res) =>{
 
-    const data = req.body;
-    const readData = fs.readFileSync(__dirname + `${pathName}/new.json`,'utf8');
+    // grab  Post data from form field
+    const data = req.body; 
+
+    // Open and read Json file data then Parse that data then store the data in memory for use.
+    const readData = fs.readFileSync(__dirname + `${pathName}/new.json`,'utf8'); 
     const parseData = JSON.parse(readData);
     const saveReadData = {barberInfo:[]}
     
@@ -67,19 +70,16 @@ app.post('/update-data',urlencodedParser,(req,res) =>{
         saveReadData.barberInfo.push(item);
     });
 
+    //use array index to update the selected Json data. Update the json data with form field data
     const letUpdateIndex = saveReadData.barberInfo[data.barberIndex];
-    console.log(saveReadData);
 
     letUpdateIndex.name = data.barberName ;
     letUpdateIndex.hours = data.barberTime.split(',');
     letUpdateIndex.phone = data.barberPhone ;
-
-    console.log(letUpdateIndex);
-    console.log(data);
-    console.log("New Array");
-    console.log(saveReadData);
     
-    let updatedData = JSON.stringify(saveReadData);
+    const updatedData = JSON.stringify(saveReadData);
+
+    //write the updated data  into the Json file.
     fs.writeFileSync(__dirname + `${pathName}/new.json`, updatedData);
 
     res.render('update-success',{data : req.body});
