@@ -1,65 +1,21 @@
-console.log(__filename);
+console.log(__dirname);
+
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-
-let jsonParser = bodyParser.json();
-
 const nodemailer = require('nodemailer');
 
-app.set('view engine', 'ejs');
+app.set('view engine','ejs')
+
+const pathName = "/dist";
 
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
-let urlencodedParser = bodyParser.urlencoded({extended : false});
-
-let testContent = `
-    {
-        "barberInfo" : [
-
-            {
-                "name": "Danny Inman",
-                "hours": ["8am","10am","1pm","4pm"],
-                "phone": "6462305467"
-            },
-            {
-                "name": "Jordan Pelli",
-                "hours": ["7am","9am","12pm","2pm"],
-                "phone": "7182309877"
-            },
-            {
-                "name": "toby lense",
-                "hours": ["3am","10am","1pm","2pm"],
-                "phone": "71823435277"
-            }
-        ],
-
-        "barberInfo" : [
-
-            {
-                "name": "Danny Inman",
-                "hours": ["8am","10am","1pm","4pm"],
-                "phone": "6462305467"
-            },
-            {
-                "name": "Jordan Pelli",
-                "hours": ["7am","9am","12pm","2pm"],
-                "phone": "7182309877"
-            },
-            {
-                "name": "toby lense",
-                "hours": ["3am","10am","1pm","2pm"],
-                "phone": "71823435277"
-            }
-        ]
-    }
-
-`;
-
+const urlencodedParser = bodyParser.urlencoded({extended : false});
 let createFile = (content,path='') => {
 
     fs.writeFileSync(`${path}rou.json`,content, (err) =>{
@@ -70,18 +26,8 @@ let createFile = (content,path='') => {
     });
     
 }
-let pathName = "/dist";
 
-// const createDir = (dirPath) => {
-//     fs.mkdirSync(process.cwd() + dirPath, {recursive : true}, (error) => {
-//         if(error){
-//             console.error("An error occurred : ", error);
-//         }else{
-//             console.log("Your Directory was made !");
-//         }
-//     });
 
-// }
 
 
 //Static DIR for the server side template
@@ -111,21 +57,38 @@ app.get('/update/:name',(req,res)=>{
 });
 
 app.post('/update-data',urlencodedParser,(req,res) =>{
-    let data = req.body;
-    console.log(data.barberName);
+
+    const data = req.body;
+    const readData = fs.readFileSync(__dirname + `${pathName}/new.json`,'utf8');
+    const parseData = JSON.parse(readData);
+    const saveReadData = {barberInfo:[]}
+    
+    parseData.barberInfo.forEach((item)=>{
+        saveReadData.barberInfo.push(item);
+    });
+
+    const letUpdateIndex = saveReadData.barberInfo[data.barberIndex];
+    console.log(saveReadData);
+
+    letUpdateIndex.name = data.barberName ;
+    letUpdateIndex.hours = data.barberTime.split(',');
+    letUpdateIndex.phone = data.barberPhone ;
+
+    console.log(letUpdateIndex);
+    console.log(data);
+    console.log("New Array");
+    console.log(saveReadData);
+    
+    let updatedData = JSON.stringify(saveReadData);
+    fs.writeFileSync(__dirname + `${pathName}/new.json`, updatedData);
+
     res.render('update-success',{data : req.body});
     
 });
 
 
 
-// app.get('/update-success',(req,res)=>{
-//     res.render('update-success');
-//  });
 
-// app.get('/update-data',(req,res)=>{
-//     res.render('update-success',{theData:req.body});
-// });
 app.post('/send-update', (req,res) =>{
 
     createFile(testContent,`./${pathName}/`);
@@ -133,38 +96,23 @@ app.post('/send-update', (req,res) =>{
     // res.redirect('/update-supreme');
     console.log("hello world");
     res.location("/update-supreme"); 
-    
-
 });
 
-//Update Barber data for page 
-
-
-
-
-
-
-// app.get('/createfile',function(req,res){
-    
-    
-// });
 
 
 app.get("/createdir", function(req,res){
- 
+
     fs.access(`.${pathName}`, function(error) {
-    if (error) {
-        console.log("Directory does not exist.");
-        createDir(pathName);
-        console.log("Directory was just created");
-        res.redirect('/');
-
-
-    } else {
-        console.log("Directory exists.")
-        
-    }
-    })
+        if (error) {
+            console.log("Directory does not exist.");
+            createDir(pathName);
+            console.log("Directory was just created");
+            res.redirect('/');
+        } else {
+            console.log("Directory exists.")
+            
+        }
+    });
     
 });
 
@@ -210,7 +158,7 @@ let transporter = nodemailer.createTransport({
   // send mail with defined transport object
   let mailOptions = {
     from: '"Node Application " <manny@mannyidea.com>', // sender address
-    to: "mwalthrust@gmail.com", // list of receivers
+    to: "mwalthrust@hotmail.com", // list of receivers
     subject: "Test Email", // Subject line
     html: output // html body
   };
@@ -223,7 +171,7 @@ let transporter = nodemailer.createTransport({
       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   });
 
-  res.redirect('http://mannyidea.com');
+//   res.redirect('http://mannyidea.com');
 
 })
 
