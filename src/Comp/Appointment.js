@@ -10,8 +10,9 @@ const Appointment = new Object;
     
     function appointmentQue () {
         const optionsTag = document.querySelector('.barber-options');
+        const hiddenBarber = document.querySelector('.barberField');
+
         optionsTag.addEventListener("change", function(){
-            let hiddenBarber = document.querySelector('.barberField');
             Appointment.barberName = this.options[this.selectedIndex].value;
             hiddenBarber.setAttribute('value',Appointment.barberName);
             console.log(Appointment);
@@ -20,8 +21,9 @@ const Appointment = new Object;
 
     function timeQue(){
         const optionsTime = document.querySelector('.barber-time');
+        const hiddenTime = document.querySelector('.timeField');
+
         optionsTime.addEventListener("change", function(){
-            let hiddenTime = document.querySelector('.timeField');
             Appointment.time = this.options[this.selectedIndex].value;
             hiddenTime.setAttribute('value',Appointment.time);
             // console.log(Appointment);
@@ -29,12 +31,13 @@ const Appointment = new Object;
     }
 
     function CalendarFunc() { 
-        
+        let hiddenDate;
+
         datepicker('.date-picker', {
             formatter: (input, date) => {
                 const value = date.toLocaleDateString()
                 input.value = value // => '1/1/2099'
-                let hiddenDate = document.querySelector(".dateField");
+                hiddenDate = document.querySelector(".dateField");
                 Appointment.date = input.value;
                 hiddenDate.setAttribute('value',Appointment.date);   
             }
@@ -58,6 +61,7 @@ const Appointment = new Object;
         const regLetter = /^[a-zA-Z_ ]*$/;
         const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+        let box, errorMessage;
 
         exitForm.addEventListener("click", function(){
             bookForm.classList.toggle("show-form");
@@ -66,8 +70,8 @@ const Appointment = new Object;
 
 
         submitBtn.addEventListener("click", function(){
-            let box = [] ;
-            let errorMessage = [];
+             box = [] ;
+             errorMessage = [];
 
             function totals(total,num){
                 return total+num;
@@ -120,16 +124,10 @@ const Appointment = new Object;
                 console.log(Appointment.time);
             }
             
-  
         });
-
 
     }
 
-
     return publicAPI; 
-
 }
-
-
 export {viewAction,Appointment}

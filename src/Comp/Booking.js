@@ -7,30 +7,29 @@ import{Appointment} from './Appointment';
     .then((response) => response.json())
     .then((data) =>{
         const barberSchedule = {};
+        const bookBtn = document.querySelector(".book-btn");
+        const bookForm = document.querySelector('#booking-form');
+        const spaBody = document.querySelector("body");
+
+        const hiddenService = document.querySelector('.serviceField');
+        const hiddenPrice = document.querySelector('.priceField');
+        const hiddenTask = document.querySelector('.taskField');
+
         data['appointments'].forEach((item,index) => { 
+
             barberSchedule[index] = new Services(item);
             barberSchedule[index] =  barberSchedule[index].barberIdentity();
             document.getElementById("target").insertAdjacentHTML('afterbegin',barberSchedule[index]);
             
-            const bookBtn = document.querySelector(".book-btn");
-            const bookForm = document.querySelector('#booking-form');
-            const spaBody = document.querySelector("body");
-
             bookBtn.addEventListener("click",function(e){
                 const btnParent = e.currentTarget.parentElement;
-                const hiddenService = document.querySelector('.serviceField');
-                const hiddenPrice = document.querySelector('.priceField');
-                const hiddenTask = document.querySelector('.taskField');
-
+    
                 Appointment.serviceId = btnParent.getAttribute("data-id");
-
                 bookForm.classList.toggle("show-form");
                 spaBody.classList.toggle("freeze");
                 hiddenService.setAttribute('value',item.service);
                 hiddenPrice.setAttribute('value', item.price);
                 hiddenTask.setAttribute('value',item.tasks);
-
-
                 // console.log( `ITem ID : ${item.id} Price: ${item.price} Services : ${item.service} Tasks: ${item.tasks}`);
             });
 

@@ -6,32 +6,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const nodemailer = require('nodemailer');
+const urlencodedParser = bodyParser.urlencoded({extended : false});
+const pathName = "/dist";
 
 app.set('view engine','ejs')
 
-const pathName = "/dist";
+
 
 //Body Parser Middleware
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
-
-const urlencodedParser = bodyParser.urlencoded({extended : false});
-let createFile = (content,path='') => {
-
-    fs.writeFileSync(`${path}rou.json`,content, (err) =>{
-        if(err){
-            throw err;
-        }
-        console.log('file is created');
-    });
-    
-}
 
 
 
 
 //Static DIR for the server side template
 app.use(express.static(path.join(__dirname + '/views/js')));
+
 //Static DIR for the server side template
 app.use(express.static(path.join(__dirname + '/views/css')));
 
@@ -39,8 +30,9 @@ app.use(express.static(path.join(__dirname + '/views/css')));
 app.use(express.static('dist'));
 
 
-
-
+/********************
+    GET  REQUEST 
+********************/
 
 // Loading Index page of the Application 
 app.get('/',(req,res) =>{
@@ -56,6 +48,11 @@ app.get('/update/:name',(req,res)=>{
     res.render('update-success',{person: req.params.name});
 });
 
+
+
+/********************
+    POST  REQUEST 
+********************/
 app.post('/update-data',urlencodedParser,(req,res) =>{
 
     // grab  Post data from form field
@@ -64,63 +61,54 @@ app.post('/update-data',urlencodedParser,(req,res) =>{
     // Open and read Json file data then Parse that data then store the data in memory for use.
     const readData = fs.readFileSync(__dirname + `${pathName}/new.json`,'utf8'); 
     const parseData = JSON.parse(readData);
-    const saveReadData = {barberInfo:[]}
+    const saveReadData = {barberInfo:[]};
+    let letUpdateIndex, arrayMatch, postData, jsonData, updatedData;
+ 
     
     parseData.barberInfo.forEach((item)=>{
         saveReadData.barberInfo.push(item);
     });
 
     //use array index to update the selected Json data. Update the json data with form field data
-    const letUpdateIndex = saveReadData.barberInfo[data.barberIndex];
+    letUpdateIndex = saveReadData.barberInfo[data.barberIndex];
+    arrayMatch = {};
 
-    letUpdateIndex.name = data.barberName ;
-    letUpdateIndex.hours = data.barberTime.split(',');
-    letUpdateIndex.phone = data.barberPhone ;
-    
-    const updatedData = JSON.stringify(saveReadData);
+    postData = [data.barberName,data.barberTime,data.barberPhone];
+    jsonData = [letUpdateIndex.name, letUpdateIndex.hours,letUpdateIndex.phone];
 
-    //write the updated data  into the Json file.
-    fs.writeFileSync(__dirname + `${pathName}/new.json`, updatedData);
-
-    res.render('update-success',{data : req.body});
-    
-});
-
-
-
-
-app.post('/send-update', (req,res) =>{
-
-    createFile(testContent,`./${pathName}/`);
-    console.log("File created ");  
-    // res.redirect('/update-supreme');
-    console.log("hello world");
-    res.location("/update-supreme"); 
-});
-
-
-
-app.get("/createdir", function(req,res){
-
-    fs.access(`.${pathName}`, function(error) {
-        if (error) {
-            console.log("Directory does not exist.");
-            createDir(pathName);
-            console.log("Directory was just created");
-            res.redirect('/');
-        } else {
-            console.log("Directory exists.")
-            
+    for(let i = 0 ; i < jsonData.length; i++){
+        if(jsonData[i] == postData[i]){
+            arrayMatch.noChange = true;
+        }else{
+            arrayMatch.noChange = false;
+            break;
         }
-    });
+
+    }
+    console.log(arrayMatch);
+
+    if( arrayMatch.noChange == false){
+
+        letUpdateIndex.name = data.barberName ;
+        letUpdateIndex.hours = data.barberTime.split(',');
+        letUpdateIndex.phone = data.barberPhone ;
+        
+        updatedData = JSON.stringify(saveReadData);
+
+        //write the updated data  into the Json file.
+        fs.writeFileSync(__dirname + `${pathName}/new.json`, updatedData);
+
+        res.render('update-success',{data : req.body});    
+            
+    }
     
 });
-
 
 
 //Post request to Send HTML email on form Submit
 app.post('/send',function(req,res){
-    console.log(req.body);
+    let transporter, mailOptions;
+
     const output = `
         <h1> Barber : ${req.body.barber} | Date : ${req.body.date} |  Time : ${req.body.time} </h1>
         <h2>Client : ${req.body.client} </h2>
@@ -140,9 +128,11 @@ app.post('/send',function(req,res){
         </ul>
     `;
 
+    console.log(req.body);
+
 
 // create reusable transporter object using the default SMTP transport
-let transporter = nodemailer.createTransport({
+ transporter = nodemailer.createTransport({
     host: "mail.mannyidea.com",
     port: 587,
     secure: false, // true for 465, false for other ports
@@ -156,7 +146,7 @@ let transporter = nodemailer.createTransport({
   });
 
   // send mail with defined transport object
-  let mailOptions = {
+    mailOptions = {
     from: '"Node Application " <manny@mannyidea.com>', // sender address
     to: "mwalthrust@hotmail.com", // list of receivers
     subject: "Test Email", // Subject line
