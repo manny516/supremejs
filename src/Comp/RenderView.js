@@ -16,7 +16,7 @@ class RenderView{
         viewAction().CalendarFunc();
         viewAction().appointmentQue();
         viewAction().bookForm();
-        viewAction().timeQue();
+        // viewAction().timeQue();
     }
 
 }

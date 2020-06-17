@@ -2,65 +2,75 @@ class Header{
 
     constructor(barbers){
         this.barbers = barbers;
-    
+        this.root = document.querySelector("#root");
+        this.listSelect = document.querySelector(".barber-options");
+        this.bookingForm =  document.querySelector("#booking-form");
+        this.listOptions;
+        this.barberIndex;
+        this.hoursArray;
+        this.hoursList;
     }
 
+    dataFetch(){
+        fetch('./new.json')
+        .then((response)=>response.json())
+        .then((data)=>{
 
-    barberList(){
+            console.log(this.selectOpt);
+            // let hoursData = (hoursItem)=>{
+            //     // let dataReturn;
+            //     // for(let i = 0; i < hoursItem.length;i++){
+            //     //     dataReturn =  `<li>${hoursItem[i]}</li>`;
+            //     //     console.log(dataReturn);
+            //     // }
 
-        const listOptions = `
-        <select class="barber-options">
-            <option value="Danny Inman">Danny Inman </option>
-            <option value="Shaun Green"> Shaun Green</option>
-            <option value="Malcom Reed"> Malcom Reed </option>
-            <option value=" Flyod Stiff"> Flyod Stiff </option>
-        </select>`;
+            //      return hoursItem;
+            // }
+            data.barberInfo.forEach((item,index) =>{
+                // let dataResult = `
+                //     <div class="barber" data-id=${index}>
+                //         <h1> ${item.name} </h1>
+                //         <ul>
+                //             ${hoursData(item.hours[])}
+                //         </ul>
+                //     </div>
+                // `;
 
-        return listOptions;
-    }
+                // console.log(dataResult);
+                this.listOptions = `<option data-index="${index}" value="${item.name}">${item.name} </option>`;
+                this.listSelect.insertAdjacentHTML("afterbegin",this.listOptions);
+                // console.log(listOptions);
+            });
 
+            this.listSelect.addEventListener("change",(e)=>{
+                this.barberIndex = e.currentTarget.getAttribute("data-current-index");
+                this.hoursArray = data.barberInfo[this.barberIndex].hours;
+                console.log( this.bookingForm);
+                for(let i = 0; i < this.hoursArray.length; i++){ 
+                   this.hoursList = ` <div> ${this.hoursArray[i]} </div>`;
+                //    this.bookingForm.insertAdjacentHTML("afterbegin",this.hoursList);
 
-    barberTime(){
-        const hours = `
-            <select class="barber-time"> 
-            
-                <option value="8"> 8AM </option>
-                <option value="9"> 8AM </option>
-                <option value="10"> 10AM </option>
-                <option value="11"> 11AM </option>
-                <option value="12"> 12PM </option>
-                <option value="13"> 1PM </option>
-                <option value="14"> 2PM </option>
-                <option value="15"> 3PM </option>
-                <option value="16"> 4PM </option>
-                <option value="17"> 5PM </option>
-                <option value="18"> 8PM </option>
-            
-            </select>
-        
-        `;
+                }
 
-        return hours;
-    }
+            });
 
-    barberSelector(){
+        });
+
 
         const selectorHtml = `              
 
             <header> 
                 <h1> Supreme Cuts </h1>
                 <hr>
-
                 <section>
-                    ${this.barberList()}
+                
                 </section>
 
                 <section>
-                    <input class="date-picker" type="text" placeholder="MM/DD/YYYY" />
+                  <input class="date-picker" type="text" placeholder="MM/DD/YYYY" />
                 </section>
                 
                 <section>
-                    ${this.barberTime()}
                 </section>
             
             </header>
@@ -69,8 +79,6 @@ class Header{
         return selectorHtml;
 
     } 
-
-   
 }
 
 

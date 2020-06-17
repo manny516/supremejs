@@ -6,7 +6,7 @@ const Appointment = new Object;
 
  const viewAction =( ) =>  {
 
-    const publicAPI = {CalendarFunc,appointmentQue,timeQue,bookForm}
+    const publicAPI = {CalendarFunc,appointmentQue,bookForm}
     
     function appointmentQue () {
         const optionsTag = document.querySelector('.barber-options');
@@ -14,23 +14,26 @@ const Appointment = new Object;
 
         optionsTag.addEventListener("change", function(){
             Appointment.barberName = this.options[this.selectedIndex].value;
+            Appointment.barberIndex = this.options[this.selectedIndex].getAttribute("data-index");
+            optionsTag.setAttribute("data-current-index",Appointment.barberIndex);
             hiddenBarber.setAttribute('value',Appointment.barberName);
             console.log(Appointment);
         });
     }
 
-    function timeQue(){
-        const optionsTime = document.querySelector('.barber-time');
-        const hiddenTime = document.querySelector('.timeField');
+    // function timeQue(){
+    //     const optionsTime = document.querySelector('.barber-time');
+    //     const hiddenTime = document.querySelector('.timeField');
 
-        optionsTime.addEventListener("change", function(){
-            Appointment.time = this.options[this.selectedIndex].value;
-            hiddenTime.setAttribute('value',Appointment.time);
-            // console.log(Appointment);
-        });
-    }
+    //     optionsTime.addEventListener("change", function(){
+    //         Appointment.time = this.options[this.selectedIndex].value;
+    //         hiddenTime.setAttribute('value',Appointment.time);
+    //         // console.log(Appointment);
+    //     });
+    // }
 
     function CalendarFunc() { 
+        
         let hiddenDate;
 
         datepicker('.date-picker', {

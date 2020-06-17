@@ -1,8 +1,8 @@
 
 let dashboardNav = ()=>{
-   let header = document.querySelector("header");
+   // let header = document.querySelector("header");
 
-   console.log(header);
+   console.log('Hello World');
 }
 
 
