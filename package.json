@@ -43,7 +43,7 @@
     "swig": "^1.4.2",
     "update-json-file": "^1.1.1",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-dev-server": "^1.16.5",
+    "webpack-dev-server": "^3.1.11",
     "webpack-middleware": "^1.5.1"
   }
 }
