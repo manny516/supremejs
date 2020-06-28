@@ -4,7 +4,7 @@ class Header{
         this.barbers = barbers;
         this.root = document.querySelector("#root");
         this.listSelect = document.querySelector(".barber-options");
-        this.bookingForm =  document.querySelector("#booking-form");
+        this.bookingForm =  document.querySelector(".time-chart");
         this.listOptions;
         this.barberIndex;
         this.hoursArray;
@@ -45,10 +45,11 @@ class Header{
             this.listSelect.addEventListener("change",(e)=>{
                 this.barberIndex = e.currentTarget.getAttribute("data-current-index");
                 this.hoursArray = data.barberInfo[this.barberIndex].hours;
-                console.log( this.bookingForm);
+                this.bookingForm.innerHTML = " ";
                 for(let i = 0; i < this.hoursArray.length; i++){ 
-                   this.hoursList = ` <div> ${this.hoursArray[i]} </div>`;
-                //    this.bookingForm.insertAdjacentHTML("afterbegin",this.hoursList);
+                   this.hoursList = ` <div class="time-slot"> ${this.hoursArray[i]} </div>`;
+                   console.log(this.hoursList);
+                   this.bookingForm.insertAdjacentHTML("afterbegin",this.hoursList);
 
                 }
 

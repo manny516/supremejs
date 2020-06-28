@@ -9,6 +9,22 @@ body{
    
 }
 
+.time-chart{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    .time-slot{
+        display:inline-block;
+        margin-right:10px;
+        color:#FFF;
+        background: #000;
+        padding-top:5px;
+        padding-bottom: 5px;
+        padding-left:15px;
+        padding-right: 15px;
+        cursor: pointer;
+    }
+}
+
 
 .show-form{display: block !important;}
 .freeze{overflow: hidden !important;}
