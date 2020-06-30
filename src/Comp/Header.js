@@ -17,32 +17,16 @@ class Header{
         .then((data)=>{
 
             console.log(this.selectOpt);
-            // let hoursData = (hoursItem)=>{
-            //     // let dataReturn;
-            //     // for(let i = 0; i < hoursItem.length;i++){
-            //     //     dataReturn =  `<li>${hoursItem[i]}</li>`;
-            //     //     console.log(dataReturn);
-            //     // }
 
-            //      return hoursItem;
-            // }
             data.barberInfo.forEach((item,index) =>{
-                // let dataResult = `
-                //     <div class="barber" data-id=${index}>
-                //         <h1> ${item.name} </h1>
-                //         <ul>
-                //             ${hoursData(item.hours[])}
-                //         </ul>
-                //     </div>
-                // `;
-
-                // console.log(dataResult);
                 this.listOptions = `<option data-index="${index}" value="${item.name}">${item.name} </option>`;
                 this.listSelect.insertAdjacentHTML("afterbegin",this.listOptions);
-                // console.log(listOptions);
             });
 
             this.listSelect.addEventListener("change",(e)=>{
+                let timeSlotsAll ; 
+                let timeField;
+
                 this.barberIndex = e.currentTarget.getAttribute("data-current-index");
                 this.hoursArray = data.barberInfo[this.barberIndex].hours;
                 this.bookingForm.innerHTML = " ";
@@ -50,9 +34,22 @@ class Header{
                    this.hoursList = ` <div class="time-slot"> ${this.hoursArray[i]} </div>`;
                    console.log(this.hoursList);
                    this.bookingForm.insertAdjacentHTML("afterbegin",this.hoursList);
-
                 }
 
+                timeSlotsAll = document.querySelectorAll(".time-slot");
+                timeField = document.querySelector(".timeField");
+                
+                if(timeSlotsAll){
+                    
+                    for(let x = 0; x < timeSlotsAll.length; x++){
+
+                        timeSlotsAll[x].addEventListener("click",(e)=>{
+                            console.log(e.currentTarget.innerHTML);
+                            timeField.setAttribute("value",e.currentTarget.innerHTML);
+                        })
+                    }
+
+                }
             });
 
         });
