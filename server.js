@@ -48,6 +48,9 @@ app.get('/update/:name',(req,res)=>{
     res.render('update-success',{person: req.params.name});
 });
 
+app.get('/success',(req,res) =>{
+    res.render('successmail');
+});
 
 
 /********************
@@ -161,7 +164,7 @@ app.post('/send',function(req,res){
       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   });
 
-//   res.redirect('http://mannyidea.com');
+  res.redirect('/success');
 
 })
 
