@@ -137,7 +137,7 @@ app.post('/send',function(req,res){
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'manny@mannyidea.com', // generated ethereal user
+      user: 'test@mannyidea.com', // generated ethereal user
       pass: '12345' // generated ethereal password
     },
     tls:{
@@ -147,8 +147,8 @@ app.post('/send',function(req,res){
 
   // send mail with defined transport object
     mailOptions = {
-    from: '"Node Application " <manny@mannyidea.com>', // sender address
-    to: "mwalthrust@hotmail.com", // list of receivers
+    from: '"Node Application " <test@mannyidea.com>', // sender address
+    to: "manny@mannyidea.com", // list of receivers
     subject: "Test Email", // Subject line
     html: output // html body
   };
