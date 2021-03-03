@@ -38,7 +38,7 @@
     "nodemailer": "^6.4.2",
     "nodemon": "^2.0.2",
     "nylas": "^4.9.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sass": "^1.25.0",
     "swig": "^1.4.2",
     "update-json-file": "^1.1.1",
